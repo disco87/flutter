@@ -42,3 +42,8 @@ git rebase (대상 브랜치명)
 
 - 브랜치 삭제 -
 git branch -D (삭제할 브랜치명)     
+
+
+
+git remote add origin https://github.com/disco87/test.git
+git push -u origin master
