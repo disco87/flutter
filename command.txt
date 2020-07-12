@@ -44,6 +44,9 @@ git rebase (대상 브랜치명)
 git branch -D (삭제할 브랜치명)     
 
 
-
-git remote add origin https://github.com/disco87/test.git
+-git에 업로드하기(origin - username을 넣어야 한다)
+git remote add origin https://github.com/disco87/flutter.git
 git push -u origin master
+
+-로컬 컴퓨터에서 작업할때 다운로드
+git pull
