@@ -1,0 +1,44 @@
+[CLI 명령어 정리]
+
+- Git 저장소 생성 -
+git init
+
+- 내 정보들 입력 -
+git config -g user.name “(내 이름)” 
+git config -g user.email “(내 메일주소)”
+
+- 폴더 내 변화들과 캡슐 상태 확인 -
+git status 
+
+- 폴더 내 변화 캡슐에 담기(스테이지) -
+git add -A
+
+- 변화를 담은 캡슐 묻기(현 상태를 저장)//지양한다.
+git commit -m “(적어둘 내용)”
+
+- git 상태들 확인(일련번호 등) -
+git log
+
+- 특정 때로 돌아가기(복구불가능) -   
+git reset (돌아갈 커밋의 일련번호 앞 6자리) --hard
+
+- 특정 상태로 돌아가기(변화를 상쇄) -
+git revert (상쇄할 커밋의 앞 6자리)
+
+- 새 평행우주(브랜치) 만들기 -
+git branch (새 브랜치명)
+
+- 만들어진 브랜치들 보기 - 
+git branch
+
+- 특정 브랜치로 이동 -
+git checkout (브랜치명)
+
+- 다른 브랜치의 변경사항 가져오기 -
+git merge (대상 브랜치명)
+
+- 다른 브랜치의 변경사항 가져오기(이력 깔끔히)
+git rebase (대상 브랜치명)
+
+- 브랜치 삭제 -
+git branch -D (삭제할 브랜치명)     
