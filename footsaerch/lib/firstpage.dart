@@ -1,9 +1,5 @@
-import 'dart:math';
-
 import "package:animator/animator.dart";
-
 import 'package:flutter/material.dart';
-
 import 'package:html/parser.dart' show parse;
 import 'package:http/http.dart' as http;
 import 'MyWebView.dart';
