@@ -8,6 +8,7 @@ import 'TodayMenuS.dart';
 import 'health.dart';
 
 void main() => runApp(MyApp());
+
 //test 해보자
 class MyApp extends StatelessWidget {
   @override
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => MainMenu(),
         '/first': (context) => FirstPage(),
         '/MyWebView': (context) => MyWebView(),
-        '/TodayMenu': (context) => TodayMenu(),
+        '/menupick': (context) => MenuPick(),
         '/myhealty': (context) => MyHealth(),
         '/healthWeb': (context) => HealthWeb(),
         '/TodayMenuR': (context) => TodayMenuR()

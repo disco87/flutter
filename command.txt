@@ -50,3 +50,6 @@ git push -u origin master
 
 -로컬 컴퓨터에서 작업할때 다운로드
 git pull
+
+
+git clone git_path : 코드가져오기

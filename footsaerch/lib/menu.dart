@@ -151,7 +151,7 @@ class _MainMenuState extends State<MainMenu> {
             ),
             onPressed: () {
               print('1');
-              Navigator.pushNamed(context, '/TodayMenuR');
+              Navigator.pushNamed(context, '/menupick');
             },
           ),
         ],
