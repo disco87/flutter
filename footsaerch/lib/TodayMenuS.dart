@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MenuPick extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
     double _h = MediaQuery.of(context).size.height;
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Menu Pick'),
       ),
@@ -24,7 +26,7 @@ class MenuPick extends StatelessWidget {
             ),
             MenuButton(
               onTap: () =>
-                  print('준비중'), //Navigator.pushNamed(context, '/TodayMenuR'),
+                  showSnackBar(), //Navigator.pushNamed(context, '/TodayMenuR'),
               // image:
               //     Image.asset('assets/images/roullette.jpg', fit: BoxFit.fill),
               title: '메뉴 추천(준비중)',
@@ -34,6 +36,16 @@ class MenuPick extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  showSnackBar() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(
+        '서비스 준비 중',
+        textAlign: TextAlign.center,
+      ),
+      duration: Duration(seconds: 1),
+    ));
   }
 }
 

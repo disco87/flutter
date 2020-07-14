@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'helthweb.dart';
 
 class MyHealth extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     double _h = MediaQuery.of(context).size.height;
     double _w = MediaQuery.of(context).size.width;
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Healthy'),
       ),
@@ -42,7 +44,7 @@ class MyHealth extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20.0, color: Color.fromRGBO(15, 40, 122, 1)),
                 ),
-                rightOnPress: () => print('런 지'),
+                rightOnPress: () => showSnackbar(),
               ),
               //-----------------2번 메뉴
               HealthMenu(
@@ -57,7 +59,7 @@ class MyHealth extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20.0, color: Color.fromRGBO(208, 101, 224, 1)),
                 ),
-                leftOnPress: () => print('플랭그'),
+                leftOnPress: () => showSnackbar(),
                 //오른쪽-----------------------107, 9, 122, 0.9
                 rightScale: 0.08,
                 rightColor: Color.fromRGBO(107, 9, 122, 0.9),
@@ -70,13 +72,23 @@ class MyHealth extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20.0, color: Color.fromRGBO(107, 9, 122, 0.9)),
                 ),
-                rightOnPress: () => print('점프스쿼트'),
+                rightOnPress: () => showSnackbar(),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  showSnackbar() {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(
+        '서비스 준비 중',
+        textAlign: TextAlign.center,
+      ),
+      duration: Duration(seconds: 1),
+    ));
   }
 }
 

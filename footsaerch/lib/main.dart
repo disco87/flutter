@@ -7,14 +7,17 @@ import 'package:footsaerch/todaymenu.dart';
 import 'TodayMenuS.dart';
 import 'health.dart';
 
+//https://clein8.tistory.com/entry/Flutter-%EC%95%B1%EC%97%90-Firebase-%EC%B6%94%EA%B0%80
+//https://codelabs.developers.google.com/codelabs/admob-ads-in-flutter/index.html#3
 void main() => runApp(MyApp());
 
-//test 해보자
+//test 해보자P
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: '냉장고를 털어라',
       theme: ThemeData(
         fontFamily: 'cute',
       ),

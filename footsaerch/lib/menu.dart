@@ -1,7 +1,8 @@
 import 'dart:ui';
+// import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter/rendering.dart';
+// import 'package:footsaerch/firebase_admob.dart';
 
 class MainMenu extends StatefulWidget {
   @override
@@ -10,12 +11,23 @@ class MainMenu extends StatefulWidget {
 
 //메뉴구성 - 1.오늘의 요리 추천 2.냉장고를털어라 3.메뉴 룰렛
 class _MainMenuState extends State<MainMenu> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // AdMobManager adMob = AdMobManager();
+
+  @override
+  void initState() {
+    // adMob.init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double _w = MediaQuery.of(context).size.width;
     double _h = MediaQuery.of(context).size.height;
     double _scale = _w * 0.0071;
     return Scaffold(
+      key: _scaffoldKey,
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -28,7 +40,7 @@ class _MainMenuState extends State<MainMenu> {
                 child: Text(
                   '가장 맛있는 요리',
                   style: TextStyle(
-                      fontSize: 40.0, color: Colors.grey.withOpacity(0.5)),
+                      fontSize: 40.0, color: Colors.grey.withOpacity(0.2)),
                 ),
               )),
           Positioned(
@@ -39,9 +51,9 @@ class _MainMenuState extends State<MainMenu> {
                 height: MediaQuery.of(context).size.height * 0.16,
                 alignment: Alignment(0.0, 0.0),
                 child: Text(
-                  'Food Cook',
+                  '냉장고를 털어라',
                   style: TextStyle(
-                      fontSize: 45.0, color: Color.fromRGBO(8, 40, 71, 0.8)),
+                      fontSize: 30.0, color: Color.fromRGBO(8, 40, 71, 0.8)),
                 ),
               )),
           Positioned(
@@ -92,7 +104,14 @@ class _MainMenuState extends State<MainMenu> {
             ),
             onPressed: () {
               print(4);
-              // Navigator.pop(context);
+
+              _scaffoldKey.currentState.showSnackBar(SnackBar(
+                content: Text(
+                  '서비스 준비 중',
+                  textAlign: TextAlign.center,
+                ),
+                duration: Duration(seconds: 1),
+              ));
             },
           ),
           CircleButton(
