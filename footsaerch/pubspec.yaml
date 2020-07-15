@@ -28,6 +28,7 @@ dependencies:
   html: ^0.14.0+3
   webview_flutter: ^0.3.22+1
   flutter_launcher_icons: ^0.7.5
+
   # firebase_admob: ^0.9.3+2
   #앱 ID: ca-app-pub-8276206336242625~3684217340 -<이거 써야함
   
@@ -89,3 +90,5 @@ flutter_icons:
   ios: true
   image_path: "assets/images/appIcon.png"
   # 만드는 명령어 flutter pub run flutter_launcher_icons:main
+  
+  
