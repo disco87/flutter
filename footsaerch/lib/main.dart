@@ -8,7 +8,8 @@ import 'TodayMenuS.dart';
 import 'health.dart';
 
 //https://clein8.tistory.com/entry/Flutter-%EC%95%B1%EC%97%90-Firebase-%EC%B6%94%EA%B0%80
-//https://codelabs.developers.google.com/codelabs/admob-ads-in-flutter/index.html#3
+//https://opensupport.tistory.com/entry/Flutter-%ED%94%8C%EB%9F%AC%ED%84%B0-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-iOS-%EA%B5%AC%EA%B8%80-%EC%95%A0%EB%93%9C%EB%AA%B9-%EB%B0%B0%EB%84%88-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0-Applying-Android-iOS-Google-AdMob-banner
+
 void main() => runApp(MyApp());
 
 //test 해보자P

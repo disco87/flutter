@@ -20,7 +20,7 @@ class _TodayMenuRState extends State<TodayMenuR>
     super.initState();
     _controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: _bunsic.length * 100));
-    _animation = Tween<double>(begin: 1, end: _bunsic.length.toDouble())
+    _animation = Tween<double>(begin: 1.0, end: _bunsic.length.toDouble())
         .animate(_controller)
           ..addStatusListener((status) {
             //Status를 통해 애니메이션 반복
