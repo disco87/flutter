@@ -26,6 +26,11 @@ class _MyWebViewState extends State<MyWebView> {
           javascriptMode: JavascriptMode.unrestricted,
         ),
       ),
+      floatingActionButton: FlatButton(
+
+        color: Colors.red,
+          onPressed: (){}, child: Text('레시피 저장')
+      ),
     );
   }
 }
@@ -33,5 +38,6 @@ class _MyWebViewState extends State<MyWebView> {
 class MyWebArgs {
   String title;
   String url;
-  MyWebArgs(this.title, this.url);
+  String imgUrl;
+  MyWebArgs(this.title, this.url,this.imgUrl);
 }

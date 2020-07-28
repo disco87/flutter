@@ -121,8 +121,10 @@ class _FirstPageState extends State<FirstPage>
                                         onTap: () => Navigator.pushNamed(
                                             context, '/MyWebView',
                                             arguments: MyWebArgs(
-                                                content[index - 1]['text'],
-                                                content[index - 1]['url'])),
+                                              content[index - 1]['text'],
+                                              content[index - 1]['url'],
+                                              content[index - 1]['imgUrl']
+                                            )),
                                       ),
                                     )
                                   : Container(
@@ -362,6 +364,7 @@ class _FirstPageState extends State<FirstPage>
           ),
         ),
       ),
+
     );
   }
 }
