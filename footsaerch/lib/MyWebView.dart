@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:footsaerch/db/db_helper.dart';
+import 'package:footsaerch/model/foodmodel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class MyWebView extends StatefulWidget {
@@ -10,6 +12,20 @@ class MyWebView extends StatefulWidget {
 class _MyWebViewState extends State<MyWebView> {
   // final Completer<WebViewController> _controller =
   //     Completer<WebViewController>();
+  saveDB(String title, String url, String imgUrl) async{
+    print('$title, $url, $imgUrl');
+    DBHelper sd = DBHelper();
+//    var res = FoodModel(
+//      id: 1,
+//      title: title,
+//      siteUrl: url,
+//      imgUrl: url,
+//      date: DateTime.now().toString(),
+//    );
+//    await sd.createFoodData(res);
+    print(await sd.foodAllRead());
+  }
+
   @override
   Widget build(BuildContext context) {
     final MyWebArgs args = ModalRoute.of(context).settings.arguments;
@@ -29,9 +45,15 @@ class _MyWebViewState extends State<MyWebView> {
       floatingActionButton: FlatButton(
 
         color: Colors.red,
-          onPressed: (){}, child: Text('레시피 저장')
+          onPressed: (){
+            saveDB(args.title, args.url, args.imgUrl);
+            setState(() {
+              
+            });
+          }, child: Text('레시피 저장')
       ),
     );
+
   }
 }
 
