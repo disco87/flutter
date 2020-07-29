@@ -104,14 +104,15 @@ class _MainMenuState extends State<MainMenu> {
             ),
             onPressed: () {
               print(4);
+              Navigator.pushNamed(context, '/recipe');
 
-              _scaffoldKey.currentState.showSnackBar(SnackBar(
-                content: Text(
-                  '서비스 준비 중',
-                  textAlign: TextAlign.center,
-                ),
-                duration: Duration(seconds: 1),
-              ));
+//              _scaffoldKey.currentState.showSnackBar(SnackBar(
+//                content: Text(
+//                  '서비스 준비 중',
+//                  textAlign: TextAlign.center,
+//                ),
+//                duration: Duration(seconds: 1),
+//              ));
             },
           ),
           CircleButton(
