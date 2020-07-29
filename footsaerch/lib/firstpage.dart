@@ -32,11 +32,6 @@ class _FirstPageState extends State<FirstPage>
     });
   }
 
-  // void reFresh() {
-  //   setState(() {
-  //     wait = false;
-  //   });
-  // }
 
   @override
   void initState() {
@@ -78,72 +73,73 @@ class _FirstPageState extends State<FirstPage>
 
                     return snapshot.connectionState == ConnectionState.done
                         ? Container(
-                            color: Colors.red.withAlpha(0),
-                            width: w,
-                            height: h * 0.6,
-                            alignment: Alignment(0.0, 0.0),
-                            child: ListView.builder(
-                              padding: EdgeInsets.all(8.0),
-                              itemCount: content.length + 1,
-                              itemBuilder: (context, index) => index > 0
-                                  ? Container(
-                                      margin: EdgeInsets.all(3.0),
-                                      decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                              colors: [
-                                            Color.fromRGBO(243, 245, 213, 0.2),
-                                            Color.fromRGBO(166, 206, 255, 0.2),
-                                            Color.fromRGBO(199, 118, 219, 0.13),
-                                          ],
-                                              stops: [
-                                            0.25,
-                                            0.65,
-                                            1
-                                          ],
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight)),
-                                      child: ListTile(
-                                        contentPadding: EdgeInsets.all(3),
-                                        leading: Container(
-                                            width: 80,
-                                            height: 80,
-                                            child: Image.network(
-                                              content[index - 1]['imgUrl'],
-                                              fit: BoxFit.cover,
-                                            )),
-                                        title: Text(
-                                          content[index - 1]['text'],
-                                          style: TextStyle(
-                                            fontSize: 20.0,
-                                          ),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                        onTap: () => Navigator.pushNamed(
-                                            context, '/MyWebView',
-                                            arguments: MyWebArgs(
-                                              content[index - 1]['text'],
-                                              content[index - 1]['url'],
-                                              content[index - 1]['imgUrl']
-                                            )),
-                                      ),
-                                    )
-                                  : Container(
-                                      height: 50,
-                                    ),
-                            ),
-                          )
-                        : Container(
-                            width: w,
-                            height: h * 0.5,
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Wait....',
-                              textAlign: TextAlign.center,
+                      color: Colors.red.withAlpha(0),
+                      width: w,
+                      height: h * 0.6,
+                      alignment: Alignment(0.0, 0.0),
+                      child: ListView.builder(
+                        padding: EdgeInsets.all(8.0),
+                        itemCount: content.length + 1,
+                        itemBuilder: (context, index) => index > 0
+                            ? Container(
+                          margin: EdgeInsets.all(3.0),
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(243, 245, 213, 0.2),
+                                    Color.fromRGBO(166, 206, 255, 0.2),
+                                    Color.fromRGBO(199, 118, 219, 0.13),
+                                  ],
+                                  stops: [
+                                    0.25,
+                                    0.65,
+                                    1
+                                  ],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight)),
+                          child: ListTile(
+                            contentPadding: EdgeInsets.all(3),
+                            leading: Container(
+                                width: 80,
+                                height: 80,
+                                child: Image.network(
+                                  content[index - 1]['imgUrl'],
+                                  fit: BoxFit.cover,
+                                )),
+                            title: Text(
+                              content[index - 1]['text'],
                               style: TextStyle(
-                                fontSize: 25,
-                                color: Colors.blueGrey[300],
+                                fontSize: 20.0,
                               ),
-                            ));
+                              textAlign: TextAlign.left,
+                            ),
+                            onTap: () => Navigator.pushNamed(
+                                context, '/MyWebView',
+                                arguments: MyWebArgs(
+                                    content[index - 1]['text'],
+                                    content[index - 1]['url'],
+                                    content[index - 1]['imgUrl'],
+                                    true,
+                                )),
+                          ),
+                        )
+                            : Container(
+                          height: 50,
+                        ),
+                      ),
+                    )
+                        : Container(
+                        width: w,
+                        height: h * 0.5,
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Wait....',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.blueGrey[300],
+                          ),
+                        ));
                   },
                 ),
               ),
