@@ -1,4 +1,3 @@
-
 class FoodModel{
   int id;
   String imgUrl;
