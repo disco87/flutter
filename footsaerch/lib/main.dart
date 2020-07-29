@@ -30,7 +30,8 @@ class MyApp extends StatelessWidget {
         '/menupick': (context) => MenuPick(),
         '/myhealty': (context) => MyHealth(),
         '/healthWeb': (context) => HealthWeb(),
-        '/TodayMenuR': (context) => TodayMenuR()
+        '/TodayMenuR': (context) => TodayMenuR(),
+        '/recipe':(_) => MyRecipe(),
       },
     );
   }
