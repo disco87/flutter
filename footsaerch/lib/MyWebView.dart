@@ -1,8 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:footsaerch/db/db_helper.dart';
+import 'package:footsaerch/control/dbhelper.dart';
 import 'package:footsaerch/model/foodmodel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'control/dbhelper.dart';
+import 'package:intl/intl.dart';
+
 
 class MyWebView extends StatefulWidget {
   @override
@@ -10,29 +13,41 @@ class MyWebView extends StatefulWidget {
 }
 
 class _MyWebViewState extends State<MyWebView> {
-  // final Completer<WebViewController> _controller =
-  //     Completer<WebViewController>();
+  DateFormat dateFormat = DateFormat('yyyy-mm-dd HH:MM');
+  bool _complete;
+  final GlobalKey<ScaffoldState> _snackKey = GlobalKey<ScaffoldState>();
+
+
+  @override
+  void initState() {
+    super.initState();
+    _complete = false;
+
+  }
+
   saveDB(String title, String url, String imgUrl) async{
-    print('$title, $url, $imgUrl');
+    _complete = true;
     DBHelper sd = DBHelper();
-//    var res = FoodModel(
+    var res = FoodModel(
 //      id: 1,
-//      title: title,
-//      siteUrl: url,
-//      imgUrl: url,
-//      date: DateTime.now().toString(),
-//    );
-//    await sd.createFoodData(res);
-    print(await sd.foodAllRead());
+      title: title,
+      siteUrl: url,
+      imgUrl: imgUrl,
+      date: dateFormat.format(DateTime.now()).toString(),
+    );
+    await sd.insertFood(res);
+    print(await sd.foods());
   }
 
   @override
   Widget build(BuildContext context) {
     final MyWebArgs args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
+      key: _snackKey,
       appBar: AppBar(
         title: Text(args.title),
       ),
+
       body: SafeArea(
         child: WebView(
           initialUrl: args.url,
@@ -42,16 +57,26 @@ class _MyWebViewState extends State<MyWebView> {
           javascriptMode: JavascriptMode.unrestricted,
         ),
       ),
-      floatingActionButton: FlatButton(
-
-        color: Colors.red,
+      floatingActionButton: args.recipeSave?FloatingActionButton(
           onPressed: (){
-            saveDB(args.title, args.url, args.imgUrl);
+            if(_complete == false){
+              saveDB(args.title, args.url, args.imgUrl);
+              setState(() {
+                _snackKey.currentState.showSnackBar(SnackBar(
+                    content: Text('레시피 저장 완료!',textAlign: TextAlign.center,),duration: Duration(seconds: 1),));
+              });
+            }
             setState(() {
-              
+              args.recipeSave = false;
             });
-          }, child: Text('레시피 저장')
-      ),
+          },
+          child: Icon(Icons.save),
+        mini: false,
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.lime,
+
+      ):null,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
 
   }
@@ -61,5 +86,7 @@ class MyWebArgs {
   String title;
   String url;
   String imgUrl;
-  MyWebArgs(this.title, this.url,this.imgUrl);
+  bool recipeSave;
+  MyWebArgs(this.title, this.url,this.imgUrl,this.recipeSave);
 }
+
