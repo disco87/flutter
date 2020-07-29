@@ -63,8 +63,9 @@ class _MyRecipeState extends State<MyRecipe> {
             },
           ),
             AnimatedPositioned(
-              duration: Duration(milliseconds: 500),
+              duration: Duration(milliseconds: 700),
 //              top: isSelect?80.0:size.height,
+              curve: Curves.easeInOutBack,
               top:80.0,
               left: isSelect?0.0:size.width,
 //            opacity: isSelect?1.0 : 0.0,
