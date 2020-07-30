@@ -21,6 +21,6 @@
 - 현재 버전
     + sqlite를 이용한 데이터 저장 구성완료
     + 검색 구현<br />
-    <img src=src ="https://github.com/disco87/flutter/blob/master/image/sqlite.png" width="150">
+    <img src="https://github.com/disco87/flutter/blob/master/image/sqlite.png" width="150">
 
 - App 플레이스토어 게재
