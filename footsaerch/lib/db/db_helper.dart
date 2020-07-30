@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:sqflite/sqflite.dart';
 import 'package:footsaerch/model/foodmodel.dart';
 import 'package:path_provider/path_provider.dart';
@@ -18,7 +17,7 @@ class DBHelper {
       // 데이터베이스 경로를 지정합니다. 참고: `path` 패키지의 `join` 함수를 사용하는 것이
       // 각 플랫폼 별로 경로가 제대로 생성됐는지 보장할 수 있는 가장 좋은 방법입니다.
       join(await getDatabasesPath(), 'food.db'),//path
-      // 데이터베이스가 처음 생성될 때, dog를 저장하기 위한 테이블을 생성합니다.
+
       onCreate: (db, version) {
         return db.execute(
           "CREATE TABLE $aa (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, siteUrl TEXT, imgUrl TEXT, date DATETIME)",
@@ -34,9 +33,9 @@ class DBHelper {
   Future<void> insertFood(FoodModel memo) async {
     final db = await database;
 
-    // Memo를 올바른 테이블에 추가하세요. 또한
-    // `conflictAlgorithm`을 명시할 것입니다. 본 예제에서는
-    // 만약 동일한 memo가 여러번 추가되면, 이전 데이터를 덮어쓸 것입니다.
+    // food의 올바른 테이블에 추가하세요. 또한
+    // `conflictAlgorithm`을 명시할 것입니다.
+    // 만약 동일한 food의 여러번 추가되면, 이전 데이터를 덮어쓸 것입니다.
     await db.insert(
       aa,
       memo.toMap(),
@@ -47,7 +46,7 @@ class DBHelper {
   Future<List<FoodModel>> foods() async {
     final db = await database;
 
-    // 모든 Memo를 얻기 위해 테이블에 질의합니다.
+    // 모든 food의 얻기 위해 테이블에 질의합니다.
     final List<Map<String, dynamic>> maps = await db.query(aa);
 
     // List<Map<String, dynamic>를 List<Memo>으로 변환합니다.
@@ -62,6 +61,25 @@ class DBHelper {
     });
   }
 
+  Future<List<FoodModel>> searchFood(String t) async{
+    final db = await database;
+    print('=============================================================================');
+//    final List<Map<String,dynamic>> maps = await db.rawQuery("SELECT * FROM $aa WHERE title");
+    final List<Map<String,dynamic>> maps = await db.query(aa, where: "title LIKE ?",whereArgs: ['%$t%'] );
+    print(maps.length);
+//    return maps;
+    return List.generate(maps.length, (i){
+      return FoodModel(
+        id: maps[i]['id'],
+        title: maps[i]['title'],
+        siteUrl: maps[i]['siteUrl'],
+        imgUrl: maps[i]['imgUrl'],
+        date: maps[i]['date'],
+      );
+    });
+
+  }
+
   Future<void> updateFood(FoodModel memo) async {
     final db = await database;
 
@@ -69,9 +87,9 @@ class DBHelper {
     await db.update(
       aa,
       memo.toMap(),
-      // Memo의 id가 일치하는 지 확인합니다.
+      // food의 id가 일치하는 지 확인합니다.
       where: "id = ?",
-      // Memo의 id를 whereArg로 넘겨 SQL injection을 방지합니다.
+      // Food의 id를 whereArg로 넘겨 SQL injection을 방지합니다.
       whereArgs: [memo.id],
     );
   }
@@ -82,9 +100,9 @@ class DBHelper {
     // 데이터베이스에서 Memo를 삭제합니다.
     await db.delete(
       aa,
-      // 특정 memo를 제거하기 위해 `where` 절을 사용하세요
+      // 특정 food의 제거하기 위해 `where` 절을 사용하세요
       where: "id = ?",
-      // Memo의 id를 where의 인자로 넘겨 SQL injection을 방지합니다.
+      // food의 id를 where의 인자로 넘겨 SQL injection을 방지합니다.
       whereArgs: [id],
     );
 
